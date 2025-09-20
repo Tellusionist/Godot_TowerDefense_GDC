@@ -11,8 +11,14 @@ config_version=5
 [application]
 
 config/name="Tower Defense Tutorial - GDC"
+run/main_scene="uid://d0gfdhlpe22r0"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
 
 [rendering]
 
