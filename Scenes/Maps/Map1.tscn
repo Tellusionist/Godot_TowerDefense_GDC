@@ -1,10 +1,13 @@
-[gd_scene load_steps=14 format=4 uid="uid://xpxlwn44p1me"]
+[gd_scene load_steps=17 format=4 uid="uid://xpxlwn44p1me"]
 
 [ext_resource type="Texture2D" uid="uid://fcf88p30y0q5" path="res://Assets/Environments/Tilesets/terrainTiles_default.png" id="1_dsyx2"]
 [ext_resource type="Texture2D" uid="uid://dk6xjy1ts8rxo" path="res://Assets/Environments/Props/treeBrown_large.png" id="2_bp0wf"]
 [ext_resource type="Texture2D" uid="uid://cl0joh4hk16ce" path="res://Assets/Environments/Props/treeGreen_large.png" id="3_kkfd8"]
 [ext_resource type="Texture2D" uid="uid://isjoakashyr6" path="res://Assets/Environments/Props/crateMetal.png" id="4_ufnsk"]
 [ext_resource type="Texture2D" uid="uid://d0wqup5bmwdhi" path="res://Assets/Environments/Props/crateWood.png" id="5_g86u4"]
+[ext_resource type="PackedScene" uid="uid://cqr6he6m85rxt" path="res://Scenes/Towers/gun_t1.tscn" id="6_g86u4"]
+[ext_resource type="PackedScene" uid="uid://0byp4b6j687g" path="res://Scenes/Towers/gun_t2.tscn" id="7_o2go4"]
+[ext_resource type="PackedScene" uid="uid://vnkqsl5vxqeg" path="res://Scenes/Towers/missle_t1.tscn" id="8_4r0br"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gatv1"]
 resource_name = "terrain"
@@ -149,3 +152,14 @@ tile_set = SubResource("TileSet_66ww1")
 [node name="TowerExclusion" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAUAAMAAQAEAAEAAAADAAkAAQAGAAEAAAADAAgAAQABAAAAAAADAAcAAQABAAAAAAADAAYAAQABAAAAAAADAAUAAQADAAEAAAAEAAUAAQACAAAAAAAFAAYAAQABAAAAAAAFAAUAAQAEAAAAAAAFAAQAAQABAAAAAAAFAAMAAQADAAEAAAAGAAMAAQACAAAAAAAHAAMAAQACAAAAAAAIAAMAAQACAAAAAAAJAAMAAQACAAAAAAAFAAcAAQABAAAAAAAGAAgAAQACAAAAAAAHAAgAAQACAAAAAAAFAAgAAQAFAAEAAAAIAAgAAQACAAAAAAAJAAgAAQACAAAAAAAKAAgAAQAGAAEAAAAKAAcAAQABAAAAAAAKAAYAAQABAAAAAAAKAAUAAQABAAAAAAAKAAQAAQABAAAAAAAKAAMAAQAGAAAAAAALAAMAAQACAAAAAAAMAAMAAQAGAAEAAAAMAAIAAQABAAAAAAANAAEAAQACAAAAAAAOAAEAAQACAAAAAAAPAAEAAQACAAAAAAAQAAEAAQACAAAAAAARAAEAAQACAAAAAAAMAAEAAQADAAEAAAASAAEAAQACAAAAAAATAAEAAQAEAAEAAAATAAIAAQABAAAAAAATAAMAAQAFAAEAAAAIAAYAAwAAAAAAAAAPAAgAAgAAAAAAAAAJAAoAAwAAAAAAAAAAAAUAAwAAAAAAAAAEAAEAAwAAAAAAAAAIAAAAAwAAAAAAAAAQAAMAAwAAAAAAAAASAAcAAwAAAAAAAAAMAAUAAwAAAAAAAAANAAMAAwAAAAAAAAAEAAkAAgAAAAAAAAABAAMAAgAAAAAAAAARAAAAAgAAAAAAAAARAAoAAgAAAAAAAAAPAAUABQAAAAAAAAADAAIABgAAAAAAAAATAAUABgAAAAAAAAARAAcABgAAAAAAAAAIAAoABgAAAAAAAAACAAkAAQACAAAAAAABAAkAAQACAAAAAAAAAAkAAQACAAAAAAD//wkAAQACAAAAAAABAAoABQAAAAAAAAAAAAcAAgAAAAAAAAA=")
 tile_set = SubResource("TileSet_bp0wf")
+
+[node name="Turrets" type="Node2D" parent="."]
+
+[node name="GunT1" parent="Turrets" instance=ExtResource("6_g86u4")]
+position = Vector2(414, 483)
+
+[node name="GunT2" parent="Turrets" instance=ExtResource("7_o2go4")]
+position = Vector2(274, 298)
+
+[node name="MissleT1" parent="Turrets" instance=ExtResource("8_4r0br")]
+position = Vector2(159, 551)

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqr6he6m85rxt"]
+
+[ext_resource type="Texture2D" uid="uid://citk8s5vfp64d" path="res://Assets/Towers/towerDefense_tile181.png" id="1_1e3w6"]
+[ext_resource type="Texture2D" uid="uid://b72qhkgn0qk1a" path="res://Assets/Towers/towerDefense_tile249.png" id="2_o2m5r"]
+
+[node name="GunT1" type="Node2D"]
+
+[node name="Base" type="Sprite2D" parent="."]
+texture = ExtResource("1_1e3w6")
+
+[node name="Turret" type="Sprite2D" parent="."]
+texture = ExtResource("2_o2m5r")
+offset = Vector2(12, 0)
+
+[node name="Muzzle" type="Node2D" parent="Turret"]
+position = Vector2(43, 0)
