@@ -32,3 +32,31 @@ func update_tower_preview(new_position: Vector2, color: Color) -> void:
 	if get_node("TowerPreview/DragTower").modulate != color:
 		get_node("TowerPreview/DragTower").modulate = color
 		get_node("TowerPreview/Sprite2D").modulate = color
+
+
+func _on_pause_play_pressed() -> void:
+	# clear tower placement if clicking pause before building
+	if get_parent().build_mode:
+		get_parent().cancel_build_mode()
+	
+	if get_tree().is_paused():
+		get_tree().paused = false
+	# Check if game hasn't started yet
+	elif get_parent().current_wave == 0:
+		get_parent().current_wave += 1
+		get_parent().start_next_wave()
+	else:
+		get_tree().paused = true
+
+
+func _on_speedup_pressed() -> void:
+	# clear tower placement if clicking FF before building
+	if get_parent().build_mode:
+		get_parent().cancel_build_mode()
+
+	if Engine.get_time_scale() == 2.0:
+		Engine.set_time_scale(1.0)
+		get_node("HUD/GameControls/Speedup").modulate = Color("ffffff")
+	else:
+		Engine.set_time_scale(2.0)
+		get_node("HUD/GameControls/Speedup").modulate = Color("ca904d")

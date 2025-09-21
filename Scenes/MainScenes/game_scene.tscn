@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dbglmv34u12b2"]
+[gd_scene load_steps=10 format=3 uid="uid://dbglmv34u12b2"]
 
 [ext_resource type="Script" uid="uid://b3wqplvbyonw" path="res://Scenes/MainScenes/game_scene.gd" id="1_2u2le"]
 [ext_resource type="PackedScene" uid="uid://xpxlwn44p1me" path="res://Scenes/Maps/Map1.tscn" id="1_akvmk"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://b72qhkgn0qk1a" path="res://Assets/Towers/towerDefense_tile249.png" id="3_2u2le"]
 [ext_resource type="Script" uid="uid://s4kmvhv752iw" path="res://Scenes/MainScenes/ui.gd" id="3_g2kuy"]
 [ext_resource type="Texture2D" uid="uid://dqy1m5n2ldag6" path="res://Assets/Towers/towerDefense_tile251.png" id="4_g2kuy"]
+[ext_resource type="Texture2D" uid="uid://8cqyq67r6w7y" path="res://Assets/Icons/right.png" id="7_674w2"]
+[ext_resource type="Texture2D" uid="uid://cgbbbi2a4ifj0" path="res://Assets/Icons/pause.png" id="8_a0jnf"]
+[ext_resource type="Texture2D" uid="uid://u6hyrfx8frha" path="res://Assets/Icons/fastForward.png" id="9_clpeu"]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_2u2le")
@@ -80,3 +83,37 @@ offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_g2kuy")
+
+[node name="GameControls" type="HBoxContainer" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -204.0
+offset_top = -100.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="PausePlay" type="TextureButton" parent="UI/HUD/GameControls"]
+process_mode = 3
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+toggle_mode = true
+texture_normal = ExtResource("7_674w2")
+texture_pressed = ExtResource("8_a0jnf")
+
+[node name="Speedup" type="TextureButton" parent="UI/HUD/GameControls"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture_normal = ExtResource("9_clpeu")
+
+[connection signal="pressed" from="UI/HUD/GameControls/PausePlay" to="UI" method="_on_pause_play_pressed"]
+[connection signal="pressed" from="UI/HUD/GameControls/Speedup" to="UI" method="_on_speedup_pressed"]

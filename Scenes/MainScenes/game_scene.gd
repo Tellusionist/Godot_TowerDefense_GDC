@@ -20,8 +20,6 @@ func _ready() -> void:
 	for i in get_tree().get_nodes_in_group("build_buttons"):
 		i.pressed.connect(func(): initiate_build_mode(i.get_name()))
 	
-	start_next_wave()
-	
 func _process(delta) -> void:
 	# check if tower is placeable (when in build mode) and update color
 	if build_mode:
