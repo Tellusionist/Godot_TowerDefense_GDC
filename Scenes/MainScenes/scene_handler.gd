@@ -1,8 +1,8 @@
 extends Node
 
 func _ready() -> void:
-	get_node("MainMenu/M/VB/NewGame").connect("pressed", on_new_game_pressed)
-	get_node("MainMenu/M/VB/Quit").connect("pressed", on_quit_pressed)
+	get_node("MainMenu/M/VB/NewGame").pressed.connect(func(): on_new_game_pressed())
+	get_node("MainMenu/M/VB/Quit").pressed.connect(func(): on_quit_pressed())
 
 func on_new_game_pressed() -> void:
 	# unload the main menu and instance the game scene handler

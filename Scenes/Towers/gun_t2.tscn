@@ -9,8 +9,10 @@ script = ExtResource("1_m2ned")
 
 [node name="Base" type="Sprite2D" parent="."]
 texture = ExtResource("1_0nhgo")
+offset = Vector2(32, 32)
 
 [node name="Turret" type="Sprite2D" parent="."]
+position = Vector2(32, 32)
 texture = ExtResource("2_m2ned")
 offset = Vector2(10, 0)
 
