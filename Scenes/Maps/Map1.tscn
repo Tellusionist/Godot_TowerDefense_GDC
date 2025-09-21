@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://xpxlwn44p1me"]
+[gd_scene load_steps=17 format=4 uid="uid://xpxlwn44p1me"]
 
 [ext_resource type="Texture2D" uid="uid://fcf88p30y0q5" path="res://Assets/Environments/Tilesets/terrainTiles_default.png" id="1_dsyx2"]
 [ext_resource type="Texture2D" uid="uid://dk6xjy1ts8rxo" path="res://Assets/Environments/Props/treeBrown_large.png" id="2_bp0wf"]
@@ -147,6 +147,12 @@ sources/5 = SubResource("TileSetAtlasSource_loq7g")
 sources/6 = SubResource("TileSetAtlasSource_a0g1t")
 sources/7 = SubResource("TileSetAtlasSource_ufnsk")
 
+[sub_resource type="Curve2D" id="Curve2D_kkfd8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -52, 608, -44.51272, -0.7009877, 44.51272, 0.7009877, 187, 608, 0, 0, 0, 0, 224, 577, -1.5931537, 35.04938, 1.5931537, -35.04938, 224, 381, 0, 0, 0, 0, 256, 352, -27.402245, -0.31863075, 27.402245, 0.31863075, 328, 352, 0, 0, 0, 0, 351, 381, -2.2304153, -32.818966, 2.2304153, 32.818966, 353, 517, 0, 0, 0, 0, 385, 545, -30.907183, 0, 30.907183, 0, 643, 544, 0, 0, 0, 0, 673, 508, 0.31863075, 19.436476, -0.31863075, -19.436476, 672, 245, 0, 0, 0, 0, 698, 225, -24.215937, 1.5931537, 24.215937, -1.5931537, 777, 223, 0, 0, 0, 0, 800, 191, -0.6372615, 35.368015, 0.6372615, -35.368015, 801, 125, 0, 0, 0, 0, 830, 97, -36.642536, -0.31863075, 36.642536, 0.31863075, 1217, 96, 0, 0, 0, 0, 1248, 125, -2.549046, -12.107968, 2.549046, 12.107968, 1251, 210, 0, 0, 0, 0, 1279, 225, 0, 0, 0, 0, 1347, 226)
+}
+point_count = 22
+
 [node name="Map1" type="Node2D"]
 
 [node name="Ground" type="TileMapLayer" parent="."]
@@ -158,3 +164,6 @@ tile_map_data = PackedByteArray("AAAUAAMAAQAEAAEAAAADAAkAAQAGAAEAAAADAAgAAQABAAA
 tile_set = SubResource("TileSet_bp0wf")
 
 [node name="Towers" type="Node2D" parent="."]
+
+[node name="Path" type="Path2D" parent="."]
+curve = SubResource("Curve2D_kkfd8")

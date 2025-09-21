@@ -10,12 +10,17 @@ var build_type
 var transparent_tile = 7 # tile index for transparent tile to mark tower placement
 var transparent_tile_id = Vector2i(1,0) # tile id for transparent tile to mark tower placement
 
+var current_wave = 0
+var enemimies_in_wave = 0
+
 func _ready() -> void:
 	map_node = get_node("Map1") ## We'll convert to variable based on selected map
 	
 	# hook up all build buttons to the build mode function
 	for i in get_tree().get_nodes_in_group("build_buttons"):
 		i.pressed.connect(func(): initiate_build_mode(i.get_name()))
+	
+	start_next_wave()
 	
 func _process(delta) -> void:
 	# check if tower is placeable (when in build mode) and update color
@@ -28,7 +33,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		cancel_build_mode()
 	if event.is_action_released("ui_accept") and build_mode == true:
 		verify_and_build()
-	
+
+##
+## BUILDING FUNCTIONS
+##
+
 func initiate_build_mode(tower_type: String) -> void:
 	# don't allow initiating build mode if already in build mode
 	if build_mode:
@@ -54,7 +63,6 @@ func update_tower_preview():
 		get_node("UI").update_tower_preview(tile_position, GameData.error_color)
 		build_valid = false
 	
-	
 func cancel_build_mode():
 	# reset build opens and clear tower preview scene
 	build_mode = false
@@ -74,3 +82,24 @@ func verify_and_build():
 		
 		## deduct cash
 		## update cash label
+
+##
+## WAVE FUNCTIONS
+##
+
+func start_next_wave() -> void:
+	var wave_data = retrieve_wave_data()
+	await(get_tree().create_timer(0.2)).timeout # don't start immediately
+	spawn_enemies(wave_data)
+
+func retrieve_wave_data() -> Array:
+	var wave_data = [["blue_tank",0.7],["blue_tank",0.1]]
+	current_wave += 1
+	enemimies_in_wave = wave_data.size()
+	return wave_data
+
+func spawn_enemies(wave_data: Array) -> void:
+	for i in wave_data:
+		var new_enemy = load("res://Scenes/Enemies/" + i[0] + ".tscn").instantiate()
+		map_node.get_node("Path").add_child(new_enemy, true)
+		await(get_tree().create_timer(i[1])).timeout
