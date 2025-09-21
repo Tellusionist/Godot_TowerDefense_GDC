@@ -47,7 +47,7 @@ Scenes/
 ├── MainScenes/           # Handlers and UI
 ├── Maps/                 # Pre-generated game maps
 ├── SupportScenes/
-├── Towers                # Towers
+├── Towers/               # Towers
 └── UIScenes/             # Menus
 
 Singletons/               # Not in use yet

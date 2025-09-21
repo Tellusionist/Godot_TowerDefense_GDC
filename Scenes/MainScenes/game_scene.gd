@@ -4,8 +4,11 @@ var map_node
 
 var build_mode = false
 var build_valid = false
-var build_location
-var build_type
+var build_tile # tilemap coordinates
+var build_location # local coordinates
+var build_type 
+var transparent_tile = 7 # tile index for transparent tile to mark tower placement
+var transparent_tile_id = Vector2i(1,0) # tile id for transparent tile to mark tower placement
 
 func _ready() -> void:
 	map_node = get_node("Map1") ## We'll convert to variable based on selected map
@@ -29,7 +32,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func initiate_build_mode(tower_type: String) -> void:
 	# don't allow initiating build mode if already in build mode
 	if build_mode:
-		return
+		cancel_build_mode()
 	# see what button was clicked then preview building / placing a tower
 	build_type = tower_type + "_t1"
 	build_mode = true
@@ -43,11 +46,12 @@ func update_tower_preview():
 	# check if the current tile is occupied by something on the TowerExclusion layer
 	# -1 means no tile, is present 
 	if map_node.get_node("TowerExclusion").get_cell_source_id(current_tile) == -1: 
-		get_node("UI").update_tower_preview(tile_position, "adff4545")
+		get_node("UI").update_tower_preview(tile_position, GameData.valid_color)
 		build_valid = true
 		build_location = tile_position
+		build_tile = current_tile
 	else:
-		get_node("UI").update_tower_preview(tile_position,  "ad54ff3c")
+		get_node("UI").update_tower_preview(tile_position, GameData.error_color)
 		build_valid = false
 	
 	
@@ -55,7 +59,7 @@ func cancel_build_mode():
 	# reset build opens and clear tower preview scene
 	build_mode = false
 	build_valid = false
-	get_node("UI/TowerPreview").queue_free()
+	get_node("UI/TowerPreview").free() # need to clear in same frame
 
 func verify_and_build():
 	## place tower on map assuming all conditions are met
@@ -64,5 +68,9 @@ func verify_and_build():
 		var new_tower = load("res://Scenes/Towers/" + build_type + ".tscn").instantiate()
 		new_tower.position = build_location
 		map_node.get_node("Towers").add_child(new_tower, true)
+		
+		# mark tile as occupied with transparent tile
+		map_node.get_node("TowerExclusion").set_cell(build_tile, transparent_tile, transparent_tile_id)
+		
 		## deduct cash
 		## update cash label
