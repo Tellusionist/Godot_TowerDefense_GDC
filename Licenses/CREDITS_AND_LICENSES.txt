@@ -1,0 +1,41 @@
+CREDITS & LICENSES
+==================
+
+This game uses third-party assets under open licenses. Below are the attributions
+and license details for each asset pack.
+
+------------------------------------------------------------
+Kenney Assets | Kenney Vleugels (Kenney.nl)
+------------------------------------------------------------
+All Kenney assets are licensed under Creative Commons Zero (CC0).
+This means they are free to use in personal, educational, and commercial projects.
+
+Credit to Kenney (https://kenney.nl)
+
+License: CC0 1.0 Universal (Public Domain Dedication)
+https://creativecommons.org/publicdomain/zero/1.0/
+
+You may use these assets in personal and commercial projects.
+Credit (Kenney or www.kenney.nl) would be nice but is not mandatory.
+
+------------------------------
+
+Donate:   http://support.kenney.nl
+Request:  http://request.kenney.nl
+
+Follow on Twitter for updates:
+@KenneyNL
+
+------------------------------
+
+Packs used:
+- Top-down Tanks Redux
+- Tower Defense (top-down) Pack
+- UI Pack (2.0) (Created 12-06-2024)
+- Font package (free)
+- Game icon pack by Kenney Vleugels (www.kenney.nl)
+- Cursor Pack (1.1)
+
+------------------------------------------------------------
+Other Assets
+------------------------------------------------------------
