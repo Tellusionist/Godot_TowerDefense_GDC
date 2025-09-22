@@ -72,3 +72,6 @@ func update_health_bar(base_health:int) -> void:
 		hp_bar.set_tint_progress("e1be32") # Orange
 	else:
 		hp_bar.set_tint_progress("e11e1e") # Red
+
+func update_money(amt:String) -> void:
+	get_node("HUD/InfoBar/H/Currency").text = amt

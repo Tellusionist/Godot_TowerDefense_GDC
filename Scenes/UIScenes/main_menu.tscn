@@ -1,11 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://bg0hmeq6eqkqu"]
+[gd_scene load_steps=10 format=3 uid="uid://bg0hmeq6eqkqu"]
 
 [ext_resource type="Texture2D" uid="uid://cbpd2o5xd8gcl" path="res://Assets/UI/Art/mm_background.png" id="1_iyrik"]
 [ext_resource type="Texture2D" uid="uid://ctjoodgpip1g0" path="res://Assets/UI/Buttons/button_rectangle_depth_gradient.png" id="3_8atao"]
 [ext_resource type="FontFile" uid="uid://dwcj4t14tt1dp" path="res://Resources/Fonts/kfn_40_Outline1.tres" id="4_8atao"]
 [ext_resource type="Texture2D" uid="uid://brt1en8axw7na" path="res://Assets/UI/Buttons/button_rectangle_gradient.png" id="4_p0gwc"]
+[ext_resource type="Texture2D" uid="uid://dtdcy5mfwxjsb" path="res://Assets/UI/Buttons/button1.png" id="5_m6svy"]
 [ext_resource type="Texture2D" uid="uid://c4kfq15g3umxh" path="res://Assets/UI/Buttons/red_button_rectangle_depth_gradient.png" id="5_p0gwc"]
 [ext_resource type="Texture2D" uid="uid://b85dwhbeaogwd" path="res://Assets/UI/Buttons/red_button_rectangle_gradient.png" id="6_2vqsh"]
+[ext_resource type="Texture2D" uid="uid://cp8jc33f643p7" path="res://Assets/UI/Buttons/button2.png" id="6_ubesp"]
+[ext_resource type="Texture2D" uid="uid://mw7dcny7gmdi" path="res://Assets/UI/Buttons/button3.png" id="7_66d3o"]
 
 [node name="main_menu" type="Control"]
 layout_mode = 3
@@ -108,7 +111,7 @@ text = "Settings"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Load Game" type="TextureButton" parent="M/VB"]
+[node name="LoadGame" type="TextureButton" parent="M/VB"]
 custom_minimum_size = Vector2(350, 75)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -116,7 +119,7 @@ texture_normal = ExtResource("3_8atao")
 texture_pressed = ExtResource("4_p0gwc")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="M/VB/Load Game"]
+[node name="Label" type="Label" parent="M/VB/LoadGame"]
 texture_filter = 2
 layout_mode = 1
 anchors_preset = 8
@@ -139,6 +142,39 @@ theme_override_font_sizes/font_size = 40
 text = "Load Game"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="VB" type="VBoxContainer" parent="M/VB"]
+visible = false
+layout_mode = 2
+
+[node name="ChooseGameSlot" type="Label" parent="M/VB/VB"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_8atao")
+theme_override_font_sizes/font_size = 25
+text = "Choose Game Slot"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HB" type="HBoxContainer" parent="M/VB/VB"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 40
+
+[node name="1" type="TextureButton" parent="M/VB/VB/HB"]
+self_modulate = Color(0.26666668, 0.26666668, 0.26666668, 1)
+layout_mode = 2
+texture_normal = ExtResource("5_m6svy")
+
+[node name="2" type="TextureButton" parent="M/VB/VB/HB"]
+self_modulate = Color(0.26666668, 0.26666668, 0.26666668, 1)
+layout_mode = 2
+texture_normal = ExtResource("6_ubesp")
+
+[node name="3" type="TextureButton" parent="M/VB/VB/HB"]
+self_modulate = Color(0.26666668, 0.26666668, 0.26666668, 1)
+layout_mode = 2
+texture_normal = ExtResource("7_66d3o")
 
 [node name="Spacer" type="Control" parent="M/VB"]
 custom_minimum_size = Vector2(0, 30)

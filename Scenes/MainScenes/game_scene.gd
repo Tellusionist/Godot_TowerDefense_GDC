@@ -15,14 +15,18 @@ var transparent_tile_id = Vector2i(1,0) # tile id for transparent tile to mark t
 var current_wave = 0
 var enemimies_in_wave = 0
 
-var base_health = 100
+var CoinEffect = preload("res://Scenes/Effects/coin_effect.tscn")
 
 func _ready() -> void:
+
 	map_node = get_node("Map1") ## We'll convert to variable based on selected map
 	
 	# hook up all build buttons to the build mode function
 	for i in get_tree().get_nodes_in_group("build_buttons"):
 		i.pressed.connect(func(): initiate_build_mode(i.get_name()))
+	
+	# set current money amount
+	$UI.update_money(str(GameData.current_money))
 	
 func _process(delta) -> void:
 	# check if tower is placeable (when in build mode) and update color
@@ -107,12 +111,25 @@ func spawn_enemies(wave_data: Array) -> void:
 	for i in wave_data:
 		var new_enemy = load("res://Scenes/Enemies/" + i[0] + ".tscn").instantiate()
 		new_enemy.connect("damage_base", on_base_damage)
+		new_enemy.connect("enemy_destroyed", on_enemy_death)
 		map_node.get_node("Path").add_child(new_enemy, true)
 		await(get_tree().create_timer(i[1])).timeout
 
 func on_base_damage(damage: int) ->  void:
-	base_health -= damage
-	if base_health <=0:
+	GameData.damage_base(damage) # update save
+	
+	# check if game is over
+	if GameData.current_base_health <=0:
 		emit_signal("game_finished")
 	else:
-		$UI.update_health_bar(base_health)
+		$UI.update_health_bar(GameData.current_base_health)
+
+func on_enemy_death(money:int, enemy_pos:Vector2) -> void:
+	# Spawn coin effect at enemy's death position
+	var coin = CoinEffect.instantiate()
+	get_node("Effects").add_child(coin)
+	coin.global_position = enemy_pos
+
+	# Update money
+	GameData.add_money(money)
+	$UI.update_money(str(GameData.current_money))

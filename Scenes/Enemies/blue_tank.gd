@@ -1,11 +1,13 @@
 extends PathFollow2D
 
 signal damage_base(damage)
+signal enemy_destroyed(money, global_position)
 
 @export var enemytype: String = "blue_tank"
 var speed = GameData.enemy_data[enemytype]["speed"]
 var hp = GameData.enemy_data[enemytype]["hp"]
 var base_damage = GameData.enemy_data[enemytype]["damage"]
+var enemy_money = GameData.enemy_data[enemytype]["enemy_money"]
 
 
 @onready var health_bar = $HealthBar
@@ -31,10 +33,8 @@ func on_hit(damage:int) -> void:
 	impact()
 	hp -= damage
 	health_bar.value = hp
-	print("enemy hit with " + str(damage) + " damage | new hp: " + str(hp))
 	if hp <=0:
 		on_destroy()
-		print("enemy destroyed")
 
 func impact() -> void:
 	randomize()
@@ -49,5 +49,7 @@ func impact() -> void:
 
 func on_destroy() -> void:
 	$CharacterBody2D.queue_free()
+	print("Enemy died at: ", position)
+	emit_signal("enemy_destroyed", enemy_money, global_position)
 	await(get_tree().create_timer(0.2)).timeout
 	self.queue_free()
