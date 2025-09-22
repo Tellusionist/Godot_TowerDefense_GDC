@@ -9,5 +9,5 @@ var tower_data = {
         "missle_t1" : {"damage": 25, "rof": 3.0, "range": 550, "animcategory": "delay"},
             }
 var enemy_data = {
-        "blue_tank" : {"hp": 40, "speed": 150},
+        "blue_tank" : {"hp": 40, "speed": 350, "damage": 20},
                 }

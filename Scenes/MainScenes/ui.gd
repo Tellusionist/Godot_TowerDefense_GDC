@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+@onready var hp_bar = get_node("HUD/InfoBar/H/BaseHealthBar")
+
 func set_tower_preview(tower_type: String, mouse_position: Vector2):
 	# load tower scene
 	var drag_tower = load("res://Scenes/Towers/" + tower_type + ".tscn").instantiate()
@@ -60,3 +62,13 @@ func _on_speedup_pressed() -> void:
 	else:
 		Engine.set_time_scale(2.0)
 		get_node("HUD/GameControls/Speedup").modulate = Color("ca904d")
+
+func update_health_bar(base_health:int) -> void:
+	var hp_bar_tween = hp_bar.create_tween()
+	hp_bar_tween.tween_property(hp_bar, "value", base_health, 0.1)
+	if base_health >= 60:
+		hp_bar.set_tint_progress("3adb69") # Green
+	elif base_health <60 and base_health >= 25:
+		hp_bar.set_tint_progress("e1be32") # Orange
+	else:
+		hp_bar.set_tint_progress("e11e1e") # Red

@@ -1,5 +1,7 @@
 extends Node2D
 
+signal game_finished(result)
+
 var map_node
 
 var build_mode = false
@@ -12,6 +14,8 @@ var transparent_tile_id = Vector2i(1,0) # tile id for transparent tile to mark t
 
 var current_wave = 0
 var enemimies_in_wave = 0
+
+var base_health = 100
 
 func _ready() -> void:
 	map_node = get_node("Map1") ## We'll convert to variable based on selected map
@@ -94,7 +98,7 @@ func start_next_wave() -> void:
 	spawn_enemies(wave_data)
 
 func retrieve_wave_data() -> Array:
-	var wave_data = [["blue_tank",1.0],["blue_tank",1.0],["blue_tank",1.5]]
+	var wave_data = [["blue_tank",1.0],["blue_tank",1.0],["blue_tank",1.0],["blue_tank",1.0],["blue_tank",1.0],["blue_tank",1.0]]
 	current_wave += 1
 	enemimies_in_wave = wave_data.size()
 	return wave_data
@@ -102,5 +106,13 @@ func retrieve_wave_data() -> Array:
 func spawn_enemies(wave_data: Array) -> void:
 	for i in wave_data:
 		var new_enemy = load("res://Scenes/Enemies/" + i[0] + ".tscn").instantiate()
+		new_enemy.connect("damage_base", on_base_damage)
 		map_node.get_node("Path").add_child(new_enemy, true)
 		await(get_tree().create_timer(i[1])).timeout
+
+func on_base_damage(damage: int) ->  void:
+	base_health -= damage
+	if base_health <=0:
+		emit_signal("game_finished")
+	else:
+		$UI.update_health_bar(base_health)

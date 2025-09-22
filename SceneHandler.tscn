@@ -6,4 +6,4 @@
 [node name="SceneHandler" type="Node"]
 script = ExtResource("1_f0ijs")
 
-[node name="MainMenu" parent="." instance=ExtResource("2_3p5yv")]
+[node name="main_menu" parent="." instance=ExtResource("2_3p5yv")]

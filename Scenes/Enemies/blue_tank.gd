@@ -1,8 +1,11 @@
 extends PathFollow2D
 
+signal damage_base(damage)
+
 @export var enemytype: String = "blue_tank"
 var speed = GameData.enemy_data[enemytype]["speed"]
 var hp = GameData.enemy_data[enemytype]["hp"]
+var base_damage = GameData.enemy_data[enemytype]["damage"]
 
 
 @onready var health_bar = $HealthBar
@@ -15,6 +18,9 @@ func _ready() -> void:
 	health_bar.top_level = true # disconnect healthbar from enemy
 
 func _process(delta) -> void:
+	if progress_ratio == 1.0:
+		emit_signal("damage_base", base_damage)
+		queue_free()
 	move(delta)
 
 func move(delta):
