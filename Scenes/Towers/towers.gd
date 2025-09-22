@@ -5,18 +5,22 @@ var enemy_array = []
 var built = false
 var enemy
 var readyToFire = true
+var animcategory
 
 
 func _ready() -> void:
 	# set the tower parameters based on the game data references
 	if built:
 		self.get_node("Range/CollisionShape2D").get_shape().radius = 0.5 * GameData.tower_data[towertype]["range"]
-		
+	
+	# not sure why this isn't working in the UI, but it's set to false but still shows up
+	self.get_node("Turret/Muzzle/MuzzleFlash").visible = false
 
 func _physics_process(delta: float) -> void:
 	if enemy_array.size() !=0 and built:
 		select_enemy()
-		turn()
+		if not $AnimationPlayer.is_playing():
+			turn()
 		if readyToFire:
 			fire()
 	else:
@@ -42,9 +46,19 @@ func select_enemy() -> void:
 
 func fire() -> void:
 	readyToFire = false
+	if animcategory == "immediate":
+		fire_immediate()
+	elif animcategory == "delay":
+		fire_delay()
 	enemy.on_hit(GameData.tower_data[towertype]["damage"])
 	await(get_tree().create_timer(GameData.tower_data[towertype]["rof"])).timeout
 	readyToFire = true
+
+func fire_immediate() -> void:
+	$AnimationPlayer.play("Fire")
+
+func fire_delay() -> void:
+	pass
 
 func _on_range_body_entered(body: Node2D) -> void:
 	# add enemies who have entered the range to the possible enemies list

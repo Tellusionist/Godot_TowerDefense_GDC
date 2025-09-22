@@ -13,12 +13,12 @@ script = ExtResource("1_a3nyt")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-texture = ExtResource("1_cpr6n")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(-2, 0)
 shape = SubResource("RectangleShape2D_a3nyt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_cpr6n")
 
 [node name="HealthBar" type="TextureProgressBar" parent="."]
 anchors_preset = 15
@@ -35,3 +35,6 @@ texture_progress = ExtResource("3_ymvcl")
 texture_progress_offset = Vector2(-30, -30)
 tint_under = Color(0.28118676, 0.2811869, 0.28118682, 1)
 tint_progress = Color(0.1314863, 0.6964829, 0.35027272, 1)
+
+[node name="Impact" type="Node2D" parent="."]
+position = Vector2(-15, -15)
