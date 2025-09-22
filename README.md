@@ -15,8 +15,9 @@ The goal of this project is to learn the fundamentals of **Godot 4.5**, game arc
 ✅ Created simple UI to initiate and quit game  
 ✅ Added basic towers (`gun_t1.gd`, `gun_t2.gd1` & `missle_t1.gd`)  
 ✅ Added basic ability to place towers  
-🔄 Currently working on: basic gameplay loop (spawning enemies, purchase tower mechanics)  
-📅 Next steps: add enemy waves, currnecy, Load/Save mechanics, Settings UI, and balance gameplay
+✅ Added spawning, targetting, and killing enemies with currency gains
+🔄 Currently working on: purchase tower mechanics, save/load mechanics
+📅 Next steps: add enemy waves, Settings UI, multiple maps, balance gameplay
 
 ---
 
@@ -27,6 +28,7 @@ project.godot             # Main Godot project file
 SceneHandler.tscn         # Handles scene transitions
 
 Assets/                   # Game art, tiles, icons, towers, enemies
+├── Effects/
 ├── Enemies/
 ├── Environments/
 │   ├── Props/            # Trees, crates, and other props
@@ -44,11 +46,12 @@ Resources/                # Configured or customized resources
 └── Tilesets/
 
 Scenes/
+├── Effects/              # Special effect animations
 ├── MainScenes/           # Handlers and UI
 ├── Maps/                 # Pre-generated game maps
-├── SupportScenes/
+├── SupportScenes/        # technically effects, but meh
 ├── Towers/               # Towers
 └── UIScenes/             # Menus
 
-Singletons/               # Not in use yet
+Singletons/               # Global vars, save/load
 ```
